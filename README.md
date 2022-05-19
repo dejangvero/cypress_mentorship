@@ -3,7 +3,7 @@
 ## Instalation
 * Open Visual Studio Code
 * Open Terminal
-* Enter git clone https://github.com/MilovanNS/CypressProject.git
+* Enter git clone [https://github.com/MilovanNS/CypressProject.git](https://github.com/dejangvero/cypress_mentorship.git)
 * Enter npm install
 
 ## Convention
