@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "description": "cypress_novalite_project",
   "main": "index.js",
+  "cypress-cucumber-preprocessor": {
+    "step_definitions": "cypress/support/step_definitions/"
+  },
   "scripts": {
     "test": "node_modules\\.bin\\cypress open",
     "test:reports:delete": "del-cli --force cypress\\report",
     "test:run": "node_modules\\.bin\\cypress run --spec 'cypress/integration/tests/*.js' --headed --reporter mochawesome",
+    "test:run:bdd": "node_modules\\.bin\\cypress run --spec 'cypress/integration/features/*.feature' --headed --reporter mochawesome",
     "test:reports:merge": "mochawesome-merge cypress/report/mochawesome-report/*.json > cypress/report/output.json",
     "test:reports:generate:html": "marge cypress/report/output.json --reportDir ./ --inline",
-    "test:dejan": "npm run  test:run -- --spec cypress/integration/tests/culture-tests.js --headed --reporter mochawesome"    
+    "test:dejan": "npm run  test:run -- --spec cypress/integration/tests/culture-tests.js --headed --reporter mochawesome"
   },
   "author": "qa team",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^9.5.3",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^4.1.1",
     "dayjs": "^1.10.6",
     "del-cli": "^3.0.1",

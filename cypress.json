@@ -1,7 +1,6 @@
 {
-    "integrationFolder":"cypress/integration/tests",
     "env": {
-        "url": "https://novalite-website-2018.test.novalite.rs/"
+        "url": "https://novalite.rs/"
     },
     "reporter":"mochawesome",    
     "reporterOptions": {
@@ -9,6 +8,7 @@
     "overwrite": false,
     "html": false,
     "json": true,
-    "reportDir": "cypress/report/mochawesome-report"
+    "reportDir": "cypress/report/mochawesome-report",
+    "testFiles": "**/*.feature"
   }
 }
