@@ -10,7 +10,7 @@ beforeEach(function(){
 
 Given('User opens culture page', () =>
 {
-  cy.visit(Cypress.env('url')+"culture");
+    cy.visit(`${Cypress.env('url')}culture`);
 })
 
 When('User clicks the Hamburger navigation button', () => {
@@ -22,10 +22,10 @@ Then('Culture hamburger menu button is yellow', () => {
 })
 
 Then('API feed call should have correct response', () => {
-    cy.socialMediaFeedRequest().then((interception) => {
-            expect(interception.response.statusCode).to.eq(200)
-            expect(interception.response.body).to.be.not.null             
-        })   
+    cy.socialMediaFeedRequest().get('@SocialMediaRequest').should((response) => {           
+            expect(response.status).to.eq(200)
+            expect(response.body).to.be.not.null             
+        })          
 })
 
 Then('The loaded feeds are not older then 3 months', () => {
@@ -51,8 +51,7 @@ Then('9 Gallery items are loaded', () => {
 })
 
 And('User clicks the TO TOP button', () => {
-    cy.get("footer>div>section:nth-child(2)").click();
-    cy.wait(3000) 
+    cy.get("footer>div>section:nth-child(2)").click().wait(3000);    
 })
 
 Then('User is redirected to the top of the page', () => {

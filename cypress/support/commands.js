@@ -15,16 +15,12 @@ dayjs.extend(isBetween)
 //
 // -- This is a parent command --
 Cypress.Commands.add("socialMediaFeedRequest", () => { 
-    cy.intercept('GET', 'feed').as('SocialMediaRequest')
-    cy.reload()
-    cy.wait('@SocialMediaRequest')
+    cy.request('GET', `${Cypress.env('url')}api/feed`).as('SocialMediaRequest')            
 })
 
-Cypress.Commands.add("getListOfSocialMediaDatesViaAPI", () => { 
-    cy.intercept('GET', 'feed').as('SocialMediaRequest')        
-        cy.reload()              
-        return cy.wait('@SocialMediaRequest').then((interception) => {
-                    const arrayJSON = JSON.parse(interception.response.body)                   
+Cypress.Commands.add("getListOfSocialMediaDatesViaAPI", () => {    
+    cy.socialMediaFeedRequest().get('@SocialMediaRequest').then((response) => {                    
+                    const arrayJSON = JSON.parse(response.body)                   
                     var listOfDates = []           
                     for (let index = 0; index < arrayJSON.length; index++) {                
                         var element = arrayJSON[index]                                              
